@@ -9,4 +9,4 @@ After clicking search the site will fill with content based on the next 5 day fo
 
 ## screenshot of site
 
-![This is a screenshot of the weather forecast website](/Weathersc.PNG)
+![This is a screenshot of the weather forecast website](/Weathersc2.PNG)
