@@ -32,5 +32,18 @@ function getForecast(lat, lon) {
         <p>Wind Speed: ${data.list[0].wind.speed} MPH</p>
       `;
 
+      const forecastContainer = document.querySelector('#forecast-container');
+      forecastContainer.innerHTML = '';
+      
+      for (let i = 0; i < 5; i++) {
+        forecastContainer.innerHTML += `
+          <div>
+            <h3>${new Date(data.list[i*8].dt * 1000).toLocaleDateString()}</h3>
+            <p>Temperature: ${kelvinToFahrenheit(data.list[i*8].main.temp)}°F</p>
+            <p>Humidity: ${data.list[i*8].main.humidity}%</p>
+            <p>Wind Speed: ${data.list[i*8].wind.speed} MPH</p>
+          </div>
+        `;
+      }
     });
 }
