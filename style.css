@@ -1,0 +1,24 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  #search-section {
+    margin-bottom: 20px;
+  }
+  
+#current-weather,
+#forecast-container > div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#forecast-container > div {
+  display: inline-block;
+  width: 18%;
+  margin-right: 2%;
+}
+
+#forecast-container > div:last-child {
+    margin-right: 0;
+  }
