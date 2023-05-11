@@ -1,5 +1,10 @@
 const apiKey = '58a7e01273b0a1fe7ba165b08a00ca26'
 
+let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+
+searchHistory.forEach(city => addCityToSearchHistory(city));
+
+
 function kelvinToFahrenheit(kelvin) {
   return ((kelvin - 273.15) * 9/5 + 32).toFixed(2); 
 }
@@ -10,6 +15,22 @@ document.querySelector('#search-form').addEventListener('submit', (event) => {
   const city = document.querySelector('#city-input').value;
   getCoordinates(city);
 });
+
+function addCityToSearchHistory(city) {
+    if (!searchHistory.includes(city)) {
+      searchHistory.push(city);
+      localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    }
+    
+    const searchHistoryContainer = document.querySelector('#search-history');
+    searchHistoryContainer.innerHTML = '';
+    searchHistory.forEach(city => {
+      const cityDiv = document.createElement('div');
+      cityDiv.textContent = city;
+      cityDiv.addEventListener('click', () => getCoordinates(city));
+      searchHistoryContainer.append(cityDiv);
+    });
+  }
 
 function getCoordinates(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
