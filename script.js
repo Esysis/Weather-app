@@ -13,6 +13,7 @@ document.querySelector('#search-form').addEventListener('submit', (event) => {
   event.preventDefault();
   
   const city = document.querySelector('#city-input').value;
+  addCityToSearchHistory(city);
   getCoordinates(city);
 });
 
@@ -48,6 +49,7 @@ function getForecast(lat, lon) {
     .then(data => {
       document.querySelector('#current-weather').innerHTML = `
         <h2>${data.city.name} (${new Date().toLocaleDateString()})</h2>
+        <img src="https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png" alt="Weather icon">
         <p>Temperature: ${kelvinToFahrenheit(data.list[0].main.temp)}°F</p>
         <p>Humidity: ${data.list[0].main.humidity}%</p>
         <p>Wind Speed: ${data.list[0].wind.speed} MPH</p>
@@ -60,6 +62,7 @@ function getForecast(lat, lon) {
         forecastContainer.innerHTML += `
           <div>
             <h3>${new Date(data.list[i*8].dt * 1000).toLocaleDateString()}</h3>
+            <img src="https://openweathermap.org/img/wn/${data.list[i*8].weather[0].icon}@2x.png" alt="Weather icon">
             <p>Temperature: ${kelvinToFahrenheit(data.list[i*8].main.temp)}°F</p>
             <p>Humidity: ${data.list[i*8].main.humidity}%</p>
             <p>Wind Speed: ${data.list[i*8].wind.speed} MPH</p>
